@@ -1,0 +1,158 @@
+[
+  {
+    "invoice_id": "INV-001",
+    "vendor": "Cloudware Solutions",
+    "po_number": "PO-2026-044",
+    "date": "2026-01-05",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "Annual Platform License (Jan\u2013Dec 2026)",
+        "amount": 24000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 24000.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "INV-002",
+    "vendor": "Morrison & Burke LLP",
+    "po_number": "PO-2026-051",
+    "date": "2026-01-20",
+    "department": "Legal",
+    "line_items": [
+      {
+        "description": "Patent filing & prosecution",
+        "amount": 4500.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Regulatory compliance review & advisory",
+        "amount": 3200.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Contract review for marketing partnership",
+        "amount": 1800.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 9500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "INV-003",
+    "vendor": "TechDirect Inc.",
+    "po_number": "PO-2026-038",
+    "date": "2026-02-01",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "MacBook Pro 14\" (3x $1,800)",
+        "amount": 5400.00,
+        "quantity": 3,
+        "unit_cost": 1800.00
+      },
+      {
+        "description": "Dell PowerEdge R760 Server",
+        "amount": 8500.00,
+        "quantity": 1,
+        "unit_cost": 8500.00
+      },
+      {
+        "description": "AWS Reserved Instances Annual (Feb 26\u2013Jan 27)",
+        "amount": 36000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 49900.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "INV-004",
+    "vendor": "Apex Strategy Group",
+    "po_number": "PO-2025-189",
+    "date": "2026-01-15",
+    "department": "Operations",
+    "line_items": [
+      {
+        "description": "Operational efficiency assessment \u2013 Dec 2025",
+        "amount": 7500.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Travel expenses \u2013 Dec 2025 on-site visits",
+        "amount": 1200.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 8700.00,
+    "service_period_start": "2025-12-01",
+    "service_period_end": "2025-12-31"
+  },
+  {
+    "invoice_id": "INV-005",
+    "vendor": "BrightSpark Agency",
+    "po_number": "PO-2026-062",
+    "date": "2026-02-10",
+    "department": "Marketing",
+    "line_items": [
+      {
+        "description": "Q1 digital ad campaign management",
+        "amount": 15000.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Branded company t-shirts (500 units)",
+        "amount": 2000.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Conference booth rental \u2013 Mar 2026",
+        "amount": 5000.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Conference attendee gift bags (branded)",
+        "amount": 1500.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 23500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "INV-006",
+    "vendor": "QuickPrint Co.",
+    "po_number": null,
+    "date": "2026-02-20",
+    "department": "Marketing",
+    "line_items": [
+      {
+        "description": "Rush printing \u2013 sales brochures (5,000 units)",
+        "amount": 3800.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 3800.00,
+    "service_period_start": null,
+    "service_period_end": null
+  }
+]

@@ -1,3 +1,9 @@
+# macOS
+.DS_Store
+
+# Assessment PDF (do not distribute)
+*.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -187,6 +193,11 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
 # .vscode/
+
+# AP Agent database
+ap_agent.db
+ap_agent.db-wal
+ap_agent.db-shm
 
 # Ruff stuff:
 .ruff_cache/

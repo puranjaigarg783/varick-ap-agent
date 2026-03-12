@@ -1,0 +1,17 @@
+[
+  {"po_number": "PO-2026-044", "vendor": "Cloudware Solutions", "amount": 24000, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-051", "vendor": "Morrison & Burke LLP", "amount": 9500, "department": "Legal", "status": "open"},
+  {"po_number": "PO-2026-038", "vendor": "TechDirect Inc.", "amount": 49900, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2025-189", "vendor": "Apex Strategy Group", "amount": 8700, "department": "Operations", "status": "open"},
+  {"po_number": "PO-2026-062", "vendor": "BrightSpark Agency", "amount": 23500, "department": "Marketing", "status": "open"},
+  {"po_number": "PO-2026-077", "vendor": "DataSync Pro", "amount": 24000, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-081", "vendor": "WeWork", "amount": 4500, "department": "Operations", "status": "open"},
+  {"po_number": "PO-2026-090", "vendor": "TalentBridge Partners", "amount": 25000, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-085", "vendor": "Global Tech Summit", "amount": 5800, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-092", "vendor": "RenewTech", "amount": 4500, "department": "Operations", "status": "open"},
+  {"po_number": "PO-2026-055", "vendor": "Cloudflare", "amount": 500, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-088", "vendor": "Sarah Chen Design LLC", "amount": 8000, "department": "Marketing", "status": "open"},
+  {"po_number": "PO-2026-095", "vendor": "ModernSpace Builders", "amount": 12000, "department": "Operations", "status": "open"},
+  {"po_number": "PO-2026-060", "vendor": "Twilio Inc.", "amount": 2300, "department": "Engineering", "status": "open"},
+  {"po_number": "PO-2026-098", "vendor": "Fresh Bites Catering", "amount": 1500, "department": "Marketing", "status": "open"}
+]

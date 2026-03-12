@@ -1,0 +1,47 @@
+[
+  {
+    "invoice_id": "INV-005",
+    "line_item_index": 1,
+    "field": "is_physical_goods",
+    "original_value": "false",
+    "corrected_value": "true",
+    "corrected_by": "human",
+    "timestamp": "2026-01-01T00:00:00Z"
+  },
+  {
+    "invoice_id": "INV-005",
+    "line_item_index": 1,
+    "field": "is_branded_merch",
+    "original_value": "false",
+    "corrected_value": "true",
+    "corrected_by": "human",
+    "timestamp": "2026-01-01T00:00:00Z"
+  },
+  {
+    "invoice_id": "INV-005",
+    "line_item_index": 3,
+    "field": "is_physical_goods",
+    "original_value": "false",
+    "corrected_value": "true",
+    "corrected_by": "human",
+    "timestamp": "2026-01-01T00:00:00Z"
+  },
+  {
+    "invoice_id": "INV-005",
+    "line_item_index": 3,
+    "field": "is_branded_merch",
+    "original_value": "false",
+    "corrected_value": "true",
+    "corrected_by": "human",
+    "timestamp": "2026-01-01T00:00:00Z"
+  },
+  {
+    "invoice_id": "INV-002",
+    "line_item_index": 1,
+    "field": "service_type",
+    "original_value": "legal",
+    "corrected_value": "consulting",
+    "corrected_by": "human",
+    "timestamp": "2026-01-01T00:00:00Z"
+  }
+]

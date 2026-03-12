@@ -1,0 +1,200 @@
+[
+  {
+    "invoice_id": "UL-1",
+    "vendor": "DataSync Pro",
+    "po_number": "PO-2026-077",
+    "date": "2026-02-15",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "Annual Platform License (Feb 26\u2013Jan 27)",
+        "amount": 18000.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "Premium Support & Implementation Services",
+        "amount": 6000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 24000.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-2",
+    "vendor": "WeWork",
+    "po_number": "PO-2026-081",
+    "date": "2026-03-01",
+    "department": "Operations",
+    "line_items": [
+      {
+        "description": "Monthly hot desk membership \u2013 15 seats, Mar 2026",
+        "amount": 4500.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 4500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-3",
+    "vendor": "TalentBridge Partners",
+    "po_number": "PO-2026-090",
+    "date": "2026-02-28",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "Placement fee \u2013 Senior Software Engineer",
+        "amount": 25000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 25000.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-4",
+    "vendor": "Global Tech Summit",
+    "po_number": "PO-2026-085",
+    "date": "2026-03-05",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "Conference registration (2 attendees)",
+        "amount": 3600.00,
+        "quantity": 2,
+        "unit_cost": 1800.00
+      },
+      {
+        "description": "Flight + hotel \u2013 SF, 3 nights",
+        "amount": 3200.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 6800.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-5",
+    "vendor": "RenewTech",
+    "po_number": "PO-2026-092",
+    "date": "2026-03-10",
+    "department": "Operations",
+    "line_items": [
+      {
+        "description": "Refurbished Dell 27\" monitors (10x $450)",
+        "amount": 4500.00,
+        "quantity": 10,
+        "unit_cost": 450.00
+      }
+    ],
+    "total": 4500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-6",
+    "vendor": "Cloudflare",
+    "po_number": "PO-2026-055",
+    "date": "2026-01-10",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "Domain renewal \u2013 1 year",
+        "amount": 200.00,
+        "quantity": 1,
+        "unit_cost": null
+      },
+      {
+        "description": "SSL certificate \u2013 wildcard, 1 year",
+        "amount": 300.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-7",
+    "vendor": "Sarah Chen Design LLC",
+    "po_number": "PO-2026-088",
+    "date": "2026-02-20",
+    "department": "Marketing",
+    "line_items": [
+      {
+        "description": "Brand identity redesign \u2013 logo, guidelines, assets",
+        "amount": 8000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 8000.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-8",
+    "vendor": "ModernSpace Builders",
+    "po_number": "PO-2026-095",
+    "date": "2026-03-15",
+    "department": "Operations",
+    "line_items": [
+      {
+        "description": "Open floor plan conversion \u2013 demolition & rebuild",
+        "amount": 12000.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 12000.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-9",
+    "vendor": "Twilio Inc.",
+    "po_number": "PO-2026-060",
+    "date": "2026-02-28",
+    "department": "Engineering",
+    "line_items": [
+      {
+        "description": "SMS API overage \u2013 Feb 2026 (usage-based)",
+        "amount": 2300.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 2300.00,
+    "service_period_start": null,
+    "service_period_end": null
+  },
+  {
+    "invoice_id": "UL-10",
+    "vendor": "Fresh Bites Catering",
+    "po_number": "PO-2026-098",
+    "date": "2026-03-08",
+    "department": "Marketing",
+    "line_items": [
+      {
+        "description": "Catering \u2013 product launch celebration (75 guests)",
+        "amount": 1500.00,
+        "quantity": 1,
+        "unit_cost": null
+      }
+    ],
+    "total": 1500.00,
+    "service_period_start": null,
+    "service_period_end": null
+  }
+]
