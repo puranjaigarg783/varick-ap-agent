@@ -13,6 +13,7 @@ from src.db import (
     get_all_invoices,
     get_approval,
     get_connection,
+    get_conversation_trace,
     get_corrections,
     get_extracted_attributes,
     get_invoice,
@@ -23,7 +24,7 @@ from src.db import (
     store_corrections,
 )
 from src.models import Correction, Invoice
-from src.pipeline import process_invoice
+from src.agent import process_invoice
 from src.approval import approve as do_approve, reject as do_reject
 
 
@@ -314,6 +315,55 @@ def cmd_status(args):
     db.close()
 
 
+def cmd_trace(args):
+    db = get_connection()
+    trace = get_conversation_trace(args.invoice_id, db)
+    if trace is None:
+        print(f"No trace found for {args.invoice_id}")
+        db.close()
+        return
+
+    print(f"Conversation trace for {args.invoice_id}")
+    print(f"  Tool calls: {trace['tool_calls_count']}")
+    print(f"  Iterations: {trace['iterations']}")
+    print(f"  Timestamp: {trace['timestamp']}")
+    print()
+
+    messages = json.loads(trace["messages"])
+    for msg in messages:
+        role = msg.get("role", "unknown")
+        content = msg.get("content", "")
+
+        if role == "user":
+            if isinstance(content, str):
+                print(f"[USER] {content[:200]}{'...' if len(content) > 200 else ''}")
+            elif isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict) and item.get("type") == "tool_result":
+                        result_str = item.get("content", "")
+                        try:
+                            parsed = json.loads(result_str)
+                            print(f"[TOOL RESULT] {json.dumps(parsed, indent=2)[:300]}")
+                        except (json.JSONDecodeError, TypeError):
+                            print(f"[TOOL RESULT] {result_str[:300]}")
+            print()
+
+        elif role == "assistant":
+            if isinstance(content, list):
+                for block in content:
+                    if isinstance(block, dict):
+                        if block.get("type") == "text":
+                            print(f"[AGENT] {block['text']}")
+                        elif block.get("type") == "tool_use":
+                            input_str = json.dumps(block.get("input", {}), indent=2)
+                            print(f"[TOOL CALL] {block['name']}({input_str[:200]})")
+            elif isinstance(content, str):
+                print(f"[AGENT] {content}")
+            print()
+
+    db.close()
+
+
 def cmd_demo(args):
     from eval.feedback import apply_prompt_refinement, generate_improvement_report
     from eval.runner import run_eval
@@ -443,6 +493,11 @@ def main():
     sub = subparsers.add_parser("status", help="Show invoice status")
     sub.add_argument("invoice_id", nargs="?", default=None)
     sub.set_defaults(func=cmd_status)
+
+    # trace
+    sub = subparsers.add_parser("trace", help="View agent conversation trace")
+    sub.add_argument("invoice_id", help="Invoice ID to view trace for")
+    sub.set_defaults(func=cmd_trace)
 
     # demo
     sub = subparsers.add_parser("demo", help="Run full demo sequence")

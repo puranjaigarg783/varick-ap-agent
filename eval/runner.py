@@ -8,7 +8,7 @@ import anthropic
 from eval.labels import LABELS
 from src.db import get_extracted_attributes, get_line_item_classifications, get_approval
 from src.models import EvalReport, EvalResult, Invoice
-from src.pipeline import process_invoice
+from src.agent import process_invoice
 
 
 def run_eval(

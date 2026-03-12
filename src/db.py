@@ -28,6 +28,7 @@ def get_connection(path: str | None = None) -> sqlite3.Connection:
 
 def create_tables(db: sqlite3.Connection) -> None:
     db.executescript("""
+        DROP TABLE IF EXISTS conversation_traces;
         DROP TABLE IF EXISTS corrections;
         DROP TABLE IF EXISTS approvals;
         DROP TABLE IF EXISTS journal_entries;
@@ -106,6 +107,14 @@ def create_tables(db: sqlite3.Connection) -> None:
             original_value TEXT NOT NULL,
             corrected_value TEXT NOT NULL,
             corrected_by TEXT NOT NULL DEFAULT 'human',
+            timestamp TEXT NOT NULL
+        );
+
+        CREATE TABLE conversation_traces (
+            invoice_id TEXT PRIMARY KEY REFERENCES invoices(invoice_id),
+            messages TEXT NOT NULL,
+            tool_calls_count INTEGER NOT NULL,
+            iterations INTEGER NOT NULL,
             timestamp TEXT NOT NULL
         );
     """)
@@ -343,6 +352,36 @@ def get_line_item_classifications(invoice_id: str, db: sqlite3.Connection) -> li
         else:
             results.append(None)
     return results
+
+
+def store_conversation_trace(
+    invoice_id: str,
+    messages: list,
+    tool_calls_count: int,
+    iterations: int,
+    db: sqlite3.Connection,
+) -> None:
+    db.execute(
+        """INSERT OR REPLACE INTO conversation_traces
+           (invoice_id, messages, tool_calls_count, iterations, timestamp)
+           VALUES (?, ?, ?, ?, ?)""",
+        (
+            invoice_id,
+            json.dumps(messages, default=str),
+            tool_calls_count,
+            iterations,
+            datetime.now(timezone.utc).isoformat(),
+        ),
+    )
+
+
+def get_conversation_trace(invoice_id: str, db: sqlite3.Connection) -> dict | None:
+    row = db.execute(
+        "SELECT * FROM conversation_traces WHERE invoice_id = ?", (invoice_id,)
+    ).fetchone()
+    if row is None:
+        return None
+    return dict(row)
 
 
 def get_extracted_attributes(invoice_id: str, line_index: int, db: sqlite3.Connection) -> ExtractedAttributes | None:
