@@ -141,18 +141,5 @@ def format_invoice_for_agent(invoice) -> str:
     return "\n".join(lines)
 
 
-# ---------------------------------------------------------------------------
-# Backward-compatibility exports
-# ---------------------------------------------------------------------------
-
-# The old extraction-era prompts and function — kept so eval/feedback.py
-# continues to work without changes until Phase 5/6 cleanup.
-
+# Baseline prompt — used as fallback when no refinements apply
 SYSTEM_PROMPT_INITIAL = get_system_prompt()
-
-SYSTEM_PROMPT_REFINED = get_system_prompt(refinements=[
-    'Branded merchandise (t-shirts, gift bags, swag) → is_physical_goods: true, is_branded_merch: true, is_marketing: false. Physical goods from marketing vendors are NOT marketing activity. Example: "Branded company t-shirts (500 units)" → is_physical_goods: true, is_branded_merch: true, is_marketing: false.',
-    'For regulatory compliance review, advisory, or assessment work — even if it mentions "regulatory" — set service_type to "consulting" unless the work is litigation, patent filing, or contract drafting.',
-])
-
-

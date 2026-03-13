@@ -222,16 +222,30 @@ TOOL_SCHEMAS = [
 # ---------------------------------------------------------------------------
 
 def _handle_lookup_po(tool_input: dict, ctx: ProcessingContext) -> dict:
+    agent_po = tool_input.get("po_number")
+    response: dict = {}
+
+    if agent_po and agent_po != ctx.invoice.po_number:
+        logger.warning(
+            f"Agent passed po_number={agent_po!r} but invoice has "
+            f"po_number={ctx.invoice.po_number!r}; using invoice value"
+        )
+        response["warning"] = (
+            f"po_number '{agent_po}' does not match invoice "
+            f"po_number '{ctx.invoice.po_number}'. Using invoice value."
+        )
+
     result = match_po(ctx.invoice, ctx.db)
     ctx.po_result = result
     if result.matched:
         set_invoice_status(ctx.invoice.invoice_id, "po_matched", ctx.db)
-    return {
+    response.update({
         "matched": result.matched,
         "reason": result.reason,
         "po_amount": result.po_amount,
         "tolerance_pct": result.tolerance_pct,
-    }
+    })
+    return response
 
 
 def _validate_invariants(attrs: ExtractedAttributes) -> ExtractedAttributes:
@@ -411,6 +425,27 @@ def _handle_flag_for_review(tool_input: dict, ctx: ProcessingContext) -> dict:
 
 
 def _handle_complete_processing(tool_input: dict, ctx: ProcessingContext) -> dict:
+    # Verify all steps were completed (skip if flagged for review)
+    if ctx.status != "flagged_for_review":
+        expected = len(ctx.invoice.line_items)
+        classified = len(ctx.line_results)
+        if classified < expected:
+            return {
+                "error": f"Only {classified}/{expected} line items classified. "
+                "Classify all line items before completing."
+            }
+        untreated = [i for i, lr in ctx.line_results.items() if not lr.treatment_applied]
+        if untreated:
+            return {
+                "error": f"Line items {untreated} have not had treatment applied. "
+                "Call apply_treatment for each classified line item."
+            }
+        if not ctx.journal_entries:
+            return {
+                "error": "No journal entries generated. "
+                "Call generate_journal_entries before completing."
+            }
+
     # Store entries
     store_entries(ctx.journal_entries, ctx.db, posted=False)
 

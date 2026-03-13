@@ -249,8 +249,9 @@ def cmd_feedback(args):
         corrections = get_corrections(db)
         patterns = analyze_corrections(corrections)
         print("Error patterns identified:")
-        for pattern, count in patterns.items():
-            print(f"  {pattern}: {count}")
+        for p in patterns:
+            field_str = " + ".join(p.fields)
+            print(f"  {p.pattern_id}: {field_str} ({p.affected_count} line items)")
         db.close()
 
     elif args.feedback_cmd == "report":
@@ -419,8 +420,9 @@ def cmd_demo(args):
     from eval.feedback import analyze_corrections
     patterns = analyze_corrections(corrections)
     print("  Error patterns identified:")
-    for pattern, count in patterns.items():
-        print(f"    {pattern}: {count}")
+    for p in patterns:
+        field_str = " + ".join(p.fields)
+        print(f"    {p.pattern_id}: {field_str} ({p.affected_count} line items)")
 
     # Step 6: Refined Eval
     _print_section("Refined Eval (improved prompt)", "6/7")

@@ -58,6 +58,20 @@ def _run_agent(
     system_prompt: str | None,
 ) -> InvoiceProcessingResult:
     ctx = ProcessingContext(invoice=invoice, db=db, mode=mode)
+
+    # Pre-flight: reject invoices with no line items
+    if not invoice.line_items:
+        ctx.status = "error"
+        ctx.flags.append("no_line_items")
+        set_invoice_status(invoice.invoice_id, "error", db)
+        return InvoiceProcessingResult(
+            status="error",
+            entries=[],
+            approval=None,
+            flags=ctx.flags,
+            error="Invoice has no line items to process",
+        )
+
     prompt = system_prompt or get_system_prompt()
     model = os.environ.get("AP_AGENT_MODEL", DEFAULT_MODEL)
 

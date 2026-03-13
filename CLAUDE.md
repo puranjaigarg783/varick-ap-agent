@@ -39,33 +39,25 @@ ap-agent/
 ├── pyproject.toml             # Dependencies: anthropic, pydantic, pytest
 ├── docs/                      # Domain-specific spec docs (see index below)
 ├── src/
-│   ├── __init__.py
-│   ├── models.py              # All Pydantic schemas         → docs/data-models.md
-│   ├── db.py                  # SQLite setup, seed data      → docs/storage.md
-│   ├── po_matching.py         # PO lookup (also a tool)      → docs/po-matching.md
-│   ├── classification.py      # Priority rule tree (also a tool) → docs/classification.md
-│   ├── treatment.py           # Prepaid/accrual logic (also a tool) → docs/treatment.md
-│   ├── approval.py            # Routing + approve/reject (also a tool) → docs/approval.md
-│   ├── journal.py             # Entry generation + balance (also tools) → docs/journal-entries.md
+│   ├── models.py              # All Pydantic schemas
+│   ├── db.py                  # SQLite setup, seed data
+│   ├── po_matching.py         # PO lookup tool
+│   ├── classification.py      # Priority rule tree           → docs/classification.md
+│   ├── treatment.py           # Prepaid/accrual logic        → docs/treatment.md
+│   ├── approval.py            # Routing + approve/reject     → docs/approval.md
+│   ├── journal.py             # Entry generation + balance   → docs/journal-entries.md
 │   ├── tools.py               # Tool schemas + handlers      → docs/pipeline.md
-│   ├── agent.py               # Agent loop + orchestration    → docs/pipeline.md
-│   └── prompts.py             # Orchestrator system prompt    → docs/llm-extraction.md
+│   ├── agent.py               # Agent loop + orchestration   → docs/pipeline.md
+│   └── prompts.py             # Orchestrator system prompt   → docs/llm-extraction.md
 ├── eval/
-│   ├── __init__.py
 │   ├── runner.py              # run_eval() → EvalReport      → docs/eval-and-feedback.md
-│   ├── labels.py              # Ground truth labels           → docs/eval-and-feedback.md
-│   └── feedback.py            # Corrections + analysis        → docs/eval-and-feedback.md
-├── data/
-│   ├── invoices_labeled.json  # 6 labeled invoices           → docs/storage.md
-│   ├── invoices_unlabeled.json # 10 unlabeled invoices       → docs/storage.md
-│   ├── purchase_orders.json   # Seeded PO data               → docs/storage.md
-│   └── corrections.json       # Pre-built corrections         → docs/eval-and-feedback.md
-├── cli.py                     # CLI entry point              → docs/cli.md
+│   ├── labels.py              # Ground truth labels
+│   └── feedback.py            # Corrections + analysis       → docs/eval-and-feedback.md
+├── data/                      # Invoice JSON, PO data, corrections
+├── cli.py                     # CLI entry point (use --help)
 └── tests/
-    └── test_rules.py          # Unit tests                   → see Testing Strategy below
+    └── test_rules.py          # Unit tests — see Testing Strategy below
 ```
-
-// WHY: One file per domain. The deterministic functions (`po_matching.py`, `classification.py`, `treatment.py`, `approval.py`, `journal.py`) are unchanged in their internal logic — they are now also callable as tools via `tools.py`. The agent loop in `agent.py` replaces the old hardcoded pipeline in `pipeline.py`. The system prompt in `prompts.py` now drives orchestration, not just extraction. The `eval/` directory is separate from `src/` because it's a consumer of the agent, not part of it.
 
 ---
 
@@ -204,21 +196,15 @@ The README must cover:
 
 ## Spec Doc Index
 
-Read the relevant doc when working on a component. Each doc is self-contained for its domain.
-
-| Doc | Covers | Read when working on |
-|-----|--------|---------------------|
-| `docs/data-models.md` | All Pydantic schemas, field invariants, locked decisions on enums | `src/models.py`, or any file that consumes/produces these types |
-| `docs/storage.md` | SQLite schema (incl. conversation_traces table), seed data, invoice JSON encoding | `src/db.py`, `data/*.json` |
-| `docs/po-matching.md` | PO lookup, tolerance validation, failure behavior | `src/po_matching.py` |
-| `docs/llm-extraction.md` | System prompt design, information boundary, LLM config, prompt versioning, few-shot examples, regulatory edge case | `src/prompts.py` |
-| `docs/classification.md` | Priority rule tree, multi-flag resolution, amortization months | `src/classification.py` |
-| `docs/treatment.md` | Prepaid/accrual logic, treatment priority, INV-004 worked example | `src/treatment.py` |
-| `docs/approval.md` | State machine, routing rules, human-in-the-loop API, expected routes | `src/approval.py` |
-| `docs/journal-entries.md` | Entry generation (4 cases), balance verification, posting by mode | `src/journal.py` |
-| `docs/pipeline.md` | Agent loop, tool schemas + handlers, ProcessingContext, transaction handling, mode semantics, error handling | `src/agent.py`, `src/tools.py` |
-| `docs/eval-and-feedback.md` | Eval system, ground truth labels, feedback loop, engineered weakness, before/after report | `eval/*.py`, `data/corrections.json` |
-| `docs/cli.md` | CLI commands, input interface, output format, demo sequence, trace command | `cli.py` |
+| Doc | Covers |
+|-----|--------|
+| `docs/pipeline.md` | Agent loop, tools, ProcessingContext, error handling, mode semantics |
+| `docs/classification.md` | Priority rule tree, multi-flag resolution, amortization |
+| `docs/llm-extraction.md` | System prompt design, information boundary, INV-002 edge case |
+| `docs/treatment.md` | Prepaid/accrual logic, treatment priority, INV-004 worked example |
+| `docs/approval.md` | State machine, routing rules, expected approval routes |
+| `docs/journal-entries.md` | Entry generation (4 cases), balance verification |
+| `docs/eval-and-feedback.md` | Eval system, engineered weakness, feedback loop phases |
 
 ---
 
